@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {
   sinInWithGooglePopup,
   createUserDocumentFromAuth,
@@ -6,8 +6,6 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../form-input/form-input.component";
-import { UserContext } from "../../contexts/user.context";
-
 import "./sign-in-form.styles.scss";
 import Button from "../button/button.component";
 
@@ -19,8 +17,6 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-
-  const { setCurrentUser } = useContext(UserContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -38,7 +34,6 @@ const SignInForm = () => {
         email,
         password
       );
-      setCurrentUser(user);
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/invalid-credential") {
@@ -51,8 +46,8 @@ const SignInForm = () => {
 
   const signInWithGoole = async () => {
     try {
-      const { user } = await sinInWithGooglePopup();
-      await createUserDocumentFromAuth(user);
+      await sinInWithGooglePopup();
+    
     } catch (error) {
       if (error.code !== "auth/popup-closed-by-user") {
         console.log("User login encountered an error: ", error);
