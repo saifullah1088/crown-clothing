@@ -12,7 +12,7 @@ const DirectoryItem = ({ category }) => {
   const onNavigateHandler = () => navigate(route);
   return (
     <DirectoryItemContainer key={id} onClick={onNavigateHandler}>
-      <BackgroundImage imageUrl={imageUrl} />
+      <BackgroundImage $imageUrl={imageUrl} />
       <Body>
         <h2>{title.toUpperCase()}</h2>
         <p>Shop Now</p>
