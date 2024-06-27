@@ -7,7 +7,7 @@ import {
 
 import FormInput from "../form-input/form-input.component";
 import "./sign-in-form.styles.scss";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 const defaultFormFields = {
   email: "",
@@ -47,7 +47,6 @@ const SignInForm = () => {
   const signInWithGoole = async () => {
     try {
       await sinInWithGooglePopup();
-    
     } catch (error) {
       if (error.code !== "auth/popup-closed-by-user") {
         console.log("User login encountered an error: ", error);
@@ -80,7 +79,11 @@ const SignInForm = () => {
           <Button type="submit" buttonType="default">
             Sign In
           </Button>
-          <Button type="button" onClick={signInWithGoole} buttonType="google">
+          <Button
+            type="button"
+            onClick={signInWithGoole}
+            buttonType={BUTTON_TYPE_CLASSES.google}
+          >
             Google sign in
           </Button>
         </div>
