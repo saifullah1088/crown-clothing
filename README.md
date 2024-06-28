@@ -1,6 +1,6 @@
 # Crown Clothing
 
-##  Sassy Cascading Style Sheets
+## Sassy Cascading Style Sheets
 
 yarn add saas
 
@@ -8,10 +8,14 @@ yarn add saas
 
 yard add styled-component
 
+## Redux
+
+yarn add redux react-redux redux-logger
+
 ### Set your main branch
 
 git branch -M main
 
-### Push code into main branch 
+### Push code into main branch
 
 git push -u origin main

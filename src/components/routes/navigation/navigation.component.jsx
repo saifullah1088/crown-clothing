@@ -6,6 +6,8 @@ import { CartContext } from "../../../contexts/cart.context";
 import { signOutUser } from "../../../utils/firebase/firebase.utils";
 import CartIcon from "../../cart-icon/cart-icon.component";
 import CartDropDown from "../../cart-dropdown/cart-dropdown.component";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../store/user/user.selector.js";
 
 import {
   NavigationContainer,
@@ -16,9 +18,8 @@ import {
 import "./navigation.styles.jsx";
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
-
+  const currentUser = useSelector(selectCurrentUser);
   const signOutHnadler = async () => {
     await signOutUser();
   };
