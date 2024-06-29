@@ -11,6 +11,7 @@ yard add styled-component
 ## Redux
 
 yarn add redux react-redux redux-logger
+yarn add reselect (to memoize previous values)
 
 ### Set your main branch
 
