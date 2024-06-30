@@ -13,6 +13,10 @@ yard add styled-component
 - yarn add redux react-redux redux-logger
 - yarn add reselect (to memoize previous values)
 
+## Stripe (Payment Integration)
+
+- yarn add @stripe/stripe-js @stripe/react-stripe-js
+
 ### Set your main branch
 
 git branch -M main
@@ -21,7 +25,7 @@ git branch -M main
 
 git push -u origin main
 
-#### Note: 
+#### Note:
 
 - cart-recucer is cart-redux (Basically redux is implemented in it)
 - categories-recucer is categories-redux (Basically redux is implemented in it)
