@@ -1,3 +1,4 @@
+// store.js
 import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import { rootReducer } from "./root-reducer";
@@ -5,12 +6,16 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { thunk } from "redux-thunk";
 
-const middleWares = [thunk, logger];
+const middleWares = [thunk];
+
+if (process.env.NODE_ENV === "development") {
+  middleWares.push(logger);
+}
 
 const persistConfig = {
   key: "root",
   storage,
-  // blecklist: ["user", "categories"],
+  // blacklist: ["user", "categories"],
   whitelist: ["cart"],
 };
 
@@ -21,7 +26,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false, // optional: to ignore non-serializable checks
-    }).concat(logger),
+    }).concat(middleWares),
 });
 
 export const persistor = persistStore(store);
