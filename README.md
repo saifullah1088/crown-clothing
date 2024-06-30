@@ -16,6 +16,11 @@ yard add styled-component
 ## Stripe (Payment Integration)
 
 - yarn add @stripe/stripe-js @stripe/react-stripe-js
+- Serverless Environment for payment integarion on netlify
+  -- npm install -g netlify-cli
+  -- netlify
+  -- netlify login
+  -- netlify dev
 
 ### Set your main branch
 
