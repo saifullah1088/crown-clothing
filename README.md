@@ -22,6 +22,10 @@ yard add styled-component
 - netlify login
 - netlify dev
 
+## TypeScript
+
+- yarn add typescript @types/node @types/react @types/react-dom @types/jest
+
 ### Set your main branch
 
 git branch -M main
