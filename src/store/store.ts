@@ -8,6 +8,8 @@ import { thunk } from "redux-thunk";
 
 const middleWares = [thunk];
 
+export type RootState = ReturnType<typeof rootReducer>;
+
 if (process.env.NODE_ENV === "development") {
   middleWares.push(logger);
 }
