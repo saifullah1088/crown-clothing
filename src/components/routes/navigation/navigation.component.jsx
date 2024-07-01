@@ -6,7 +6,7 @@ import CartIcon from "../../cart-icon/cart-icon.component";
 import { selectIsCartOpen } from "../../../store/cart/cart.selectors";
 import CartDropDown from "../../cart-dropdown/cart-dropdown.component";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../../store/user/user.selector.js";
+import { selectCurrentUser } from "../../../store/user/user.selector.ts";
 
 import {
   NavigationContainer,
