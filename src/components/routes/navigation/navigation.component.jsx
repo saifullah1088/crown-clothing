@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { ReactComponent as CrownLogo } from "../../../assets/crown.svg";
 import { signOutUser } from "../../../utils/firebase/firebase.utils";
 import CartIcon from "../../cart-icon/cart-icon.component";
-import { selectIsCartOpen } from "../../../store/cart/cart.selectors.js";
+import { selectIsCartOpen } from "../../../store/cart/cart.selectors";
 import CartDropDown from "../../cart-dropdown/cart-dropdown.component";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/user/user.selector.js";
