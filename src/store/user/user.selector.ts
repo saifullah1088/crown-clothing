@@ -1,3 +1,2 @@
-import { RootReducerType } from "../categories/categories.types";
-export const selectCurrentUser = (state: RootReducerType) =>
-  state.user.currentUser;
+import { RootState } from "../store";
+export const selectCurrentUser = (state: RootState) => state.user.currentUser;
