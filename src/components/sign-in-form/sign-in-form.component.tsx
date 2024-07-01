@@ -1,53 +1,54 @@
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import {
-  sinInWithGooglePopup,
-  createUserDocumentFromAuth,
+  signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../form-input/form-input.component";
-import "./sign-in-form.styles.scss";
+import { SignInContainer, ButtonContainer } from "./sign-in-form.styles";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
-const defaultFormFields = {
+type FormFields = {
+  email: string;
+  password: string;
+};
+
+const defaultFormFields: FormFields = {
   email: "",
   password: "",
 };
 
 const SignInForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { email, password } = formFields;
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
+      await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === "auth/invalid-credential") {
-        alert("invalid credentials");
+        alert("Invalid credentials");
       } else {
         console.log("User login encountered an error: ", error);
       }
     }
   };
 
-  const signInWithGoole = async () => {
+  const signInWithGoogle = async () => {
     try {
-      await sinInWithGooglePopup();
-    } catch (error) {
+      await signInWithGooglePopup();
+    } catch (error: any) {
       if (error.code !== "auth/popup-closed-by-user") {
         console.log("User login encountered an error: ", error);
       }
@@ -55,7 +56,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-in-container">
+    <SignInContainer>
       <h2>Already have an account?</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -75,20 +76,20 @@ const SignInForm = () => {
           name="password"
           value={password}
         />
-        <div className="buttons-container">
-          <Button type="submit" buttonType="default">
+        <ButtonContainer>
+          <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.base}>
             Sign In
           </Button>
           <Button
             type="button"
-            onClick={signInWithGoole}
+            onClick={signInWithGoogle}
             buttonType={BUTTON_TYPE_CLASSES.google}
           >
             Google sign in
           </Button>
-        </div>
+        </ButtonContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
 

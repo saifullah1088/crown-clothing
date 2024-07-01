@@ -7,21 +7,27 @@ import { Spinner } from "../../spinner/spinner.component";
 import { useParams } from "react-router-dom";
 import { useState, useEffect, Fragment } from "react";
 import ProductCard from "../../product-card/product-card.component";
-import { CategoryContainer } from "./category.styles.jsx";
+import { CategoryContainer } from "./category.styles";
 
-const Category = () => {
-  const { category } = useParams();
+type CategoryRouteParams = {
+  category: string;
+};
+
+const Category: React.FC = () => {
+  const { category } = useParams<CategoryRouteParams>();
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectCategoriesIsLoading);
-  const [products, setProducts] = useState(categoriesMap[category]);
+  const [products, setProducts] = useState(categoriesMap[category ?? ""]);
 
   useEffect(() => {
-    setProducts(categoriesMap[category]);
+    if (category) {
+      setProducts(categoriesMap[category]);
+    }
   }, [categoriesMap, category]);
 
   return (
     <Fragment>
-      <h2 className="category-title">{category.toUpperCase()}</h2>
+      <h2 className="category-title">{category?.toUpperCase()}</h2>
       {isLoading ? (
         <Spinner />
       ) : (

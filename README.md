@@ -26,6 +26,7 @@ yard add styled-component
 
 - yarn add typescript @types/node @types/react @types/react-dom @types/jest
 - yarn add @types/redux-logger
+- yarn add @types/styled-components
 
 ### Set your main branch
 

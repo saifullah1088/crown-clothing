@@ -7,7 +7,7 @@ import { setIsCartOpen } from "../../store/cart/cart.actions";
 import { CartIconContainer, ShoppingIcon, ItemCount } from "./cart-icon.styles";
 
 const CartIcon = () => {
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const cartCount = useSelector(selectCartCount);
   const isCartOpen = useSelector(selectIsCartOpen);
 

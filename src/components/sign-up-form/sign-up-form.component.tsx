@@ -1,24 +1,32 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import { SignupContainer } from "./sign-up-form.styles";
+import { AuthError, AuthErrorCodes } from "firebase/auth";
 
-import "./sign-up-form.styles.scss";
-const defaultFormFields = {
+type FormFields = {
+  displayName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
+const defaultFormFields: FormFields = {
   displayName: "",
   email: "",
   password: "",
   confirmPassword: "",
 };
 
-const SignUpForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+const SignUpForm: React.FC = () => {
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
@@ -27,11 +35,11 @@ const SignUpForm = () => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("passwords donot match");
+      alert("Passwords do not match");
       return;
     }
 
@@ -46,10 +54,10 @@ const SignUpForm = () => {
       }
       resetFormFields();
     } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
-        alert("cannot create user, email already in use.");
-      } else if (error.code === "auth/weak-password") {
-        alert("password should be at least 6 characters");
+      if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
+        alert("Cannot create user, email already in use.");
+      } else if ((error as AuthError).code === AuthErrorCodes.WEAK_PASSWORD) {
+        alert("Password should be at least 6 characters");
       } else {
         console.log("User creation encountered an error: ", error);
       }
@@ -57,7 +65,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <SignupContainer>
       <h2>Don't have an account?</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -94,11 +102,11 @@ const SignUpForm = () => {
           value={confirmPassword}
         />
 
-        <Button type="submit" buttonType="default">
+        <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.base}>
           Sign Up
         </Button>
       </form>
-    </div>
+    </SignupContainer>
   );
 };
 
