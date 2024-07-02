@@ -11,6 +11,7 @@ import Navigation from "./components/routes/navigation/navigation.component";
 import Authentication from "./components/routes/authentication/authentication";
 import Shop from "./components/routes/shop/shop.component";
 import Checkout from "./components/routes/checkout/checkout.component";
+import { GlobalStyles } from "./global.styles";
 
 const App = () => {
   const dispatch = useDispatch();
