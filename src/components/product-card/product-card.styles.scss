@@ -48,4 +48,14 @@
       width: 10%;
     }
   }
+
+  @media screen and (max-width: 800px) {
+    .footer {
+      margin-bottom: 30px;
+    }
+    button {
+      width: 60%;
+      top: 200px;
+    }
+  }
 }
