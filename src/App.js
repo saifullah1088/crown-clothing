@@ -11,7 +11,6 @@ import Authentication from "./components/routes/authentication/authentication";
 import Shop from "./components/routes/shop/shop.component";
 import Checkout from "./components/routes/checkout/checkout.component";
 import { Spinner } from "./components/spinner/spinner.component";
-
 const Home = lazy(() => import("./components/routes/home/home.component"));
 
 const App = () => {
