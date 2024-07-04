@@ -42,5 +42,5 @@ git push -u origin main
 
 #### Note:
 
-- cart-recucer is cart-redux (Basically redux is implemented in it)
-- categories-recucer is categories-redux (Basically redux is implemented in it)
+- cart-reducer is cart-redux (Basically redux is implemented in it)
+- categories-reducer is categories-redux (Basically redux is implemented in it)
